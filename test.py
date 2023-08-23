@@ -1,7 +1,11 @@
+from __future__ import annotations
+
+from typing import Union
+
 import randrep
 
 
-def test_seeded_instance(seed: bytes | str | int) -> None:
+def test_seeded_instance(seed: Union[bytes, str, int]) -> None:
     rnd = randrep.Random(seed)
     print(rnd.getblock().hex())
     print(rnd.randbytes(10).hex())
