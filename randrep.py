@@ -110,7 +110,7 @@ class Random(_random.Random):
         # then shift drop the extra bytes out by shifting.
         numbytes = (n + 7) // 8
         extrabits = 8 * numbytes - n
-        x = int.from_bytes(self.randbytes(numbytes))
+        x = int.from_bytes(self.randbytes(numbytes), byteorder="big")
         return x >> extrabits
 
     def getstate(self) -> bytes:
