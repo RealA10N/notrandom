@@ -2,11 +2,11 @@ from __future__ import annotations
 
 from typing import Union
 
-import randrep
+import notrandom
 
 
 def test_seeded_instance(seed: Union[bytes, str, int]) -> None:
-    rnd = randrep.Random(seed)
+    rnd = notrandom.Random(seed)
     print(rnd.getblock().hex())
     print(rnd.randbytes(10).hex())
     print("".join(str(rnd.getrandbits(1)) for _ in range(100)))

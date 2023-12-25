@@ -6,10 +6,10 @@ with open("README.txt", encoding="utf8") as f:
     README = f.read()
 
 setup(
-    name="randrep",
+    name="notrandom",
     version="1.0.0",
     description="Pseudorandom, 100% reproducible variable generators",
-    url="https://github.com/RealA10N/randrep",
+    url="https://github.com/RealA10N/notrandom",
     python_requires=">=3.7,<4",
     long_description=README,
     long_description_content_type="text/plain",
