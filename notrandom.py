@@ -57,29 +57,33 @@ __all__ = [
 ]
 
 
+_SeedTypes: _tp.TypeAlias = _tp.Union[int, str, bytes]
+
+
 class UnseededRandomGeneratorError(RuntimeError):
     pass
 
 
 class Random(_random.Random):
-    def __init__(self, seed: _tp.Union[int, str, bytes, None] = None) -> None:
-        self.seed(seed=seed)
+    def __init__(self, seed: _tp.Optional[_SeedTypes] = None) -> None:
+        self._seed: _tp.Optional[bytes] = self._convert_to_byteseed(seed)
 
-    def seed(self, seed: _tp.Union[int, str, bytes, None]) -> None:
+    def seed(self, seed: _tp.Optional[_SeedTypes]) -> None:
         """Set the set of the reproducible-random generator. Pass in None to
-        unseed the generator."""
-        if seed is None:
-            self._seed = None
-            return
+        un-seed the generator."""
+        self._seed = None if seed is None else self._convert_to_byteseed(seed)
 
-        if isinstance(seed, str):
-            seed = seed.encode(encoding="utf8")
-        if isinstance(seed, bytes):
-            seed = _sha256(seed).digest()
-        if isinstance(seed, int):
-            seed = seed.to_bytes(32, byteorder="big")
+    def _convert_to_byteseed(self, input_seed: _SeedTypes) -> bytes:
+        """Converts any valid input seed into a bytes block, which is used as
+        the actual seed."""
 
-        self._seed = seed
+        if isinstance(input_seed, str):
+            input_seed = input_seed.encode(encoding="utf8")
+        if isinstance(input_seed, bytes):
+            input_seed = _sha256(input_seed).digest()
+        if isinstance(input_seed, int):
+            input_seed = input_seed.to_bytes(32, byteorder="big")
+        return input_seed
 
     def getblock(self) -> bytes:
         """Computes the next block of 32 reproducible-random bytes and returns
