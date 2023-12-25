@@ -28,6 +28,8 @@ import random as _random
 import typing as _tp
 from hashlib import sha256 as _sha256
 
+VERSION = "1.0.0"
+
 __all__ = [
     "Random",
     "NotRandom",

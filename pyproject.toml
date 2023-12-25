@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+authors = [{ name = "Alon Krymgand", email = "os@alon.kr" }]
+name = "notrandom"
+description = "Pseudorandom, 100% reproducible variable generators"
+readme = "README.rst"
+requires-python = ">=3.7"
+keywords = ["random", "pseudorandom", "generators"]
+dynamic = ["version"]
+
+[tool.setuptools]
+py-modules = ["notrandom"]
+
+[tool.setuptools.dynamic]
+version = { attr = "notrandom.VERSION" }
