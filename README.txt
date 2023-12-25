@@ -2,7 +2,7 @@ notrandom: Pseudorandom, 100% reproducible variable generators.
 
 Implementation of the builtin 'random' API, which guarantees 100% deterministic and reproducible computation of values, regardless of python versions, operating system or environment (a guarantee that the 'random' module does not provide). Non randomness guaranteed!
 
-For example, when seeding the generator with the integer 0, the those are the first 3 floating numbers, across all systems, Python implement and versions. Try it yourself!
+For example, when seeding the generator with the integer 0, the those are the first 3 floating numbers, across all systems, Python Implementations and versions. Try it yourself!
 
 >> from notrandom import random, seed
 >> seed(0)
