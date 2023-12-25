@@ -6,8 +6,8 @@ operating system or environment (a guarantee that the 'random' module does not
 provide).
 
 This package is based on the builtin 'random' module and strongly resembles its
-API, with only minor adjustments. In particular, all global functions of radnom
-are also available in randrep, in addition to the randrep.Random object which
+API, with only minor adjustments. In particular, all global functions of random
+are also available in randrep, in addition to the randrep. Random object which
 implements the random.Random api.
 
 It is important to note that the values computed by the randrep are actually

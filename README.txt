@@ -1,0 +1,23 @@
+randrep: Pseudorandom, 100% reproducible variable generators.
+
+Implementation of the builtin 'random' API, which guarantees 100% deterministic
+and reproducible computation of values, regardless of python versions,
+operating system or environment (a guarantee that the 'random' module does not
+provide).
+
+This package is based on the builtin 'random' module and strongly resembles its
+API, with only minor adjustments. In particular, all global functions of random
+are also available in randrep, in addition to the randrep. Random object which
+implements the random.Random api.
+
+It is important to note that the values computed by the randrep are actually
+not random at all, as the process is 100% deterministic (that is the whole
+point!). Obviously, it is not intended to be used cryptographically in any way
+or circumstance.
+
+Behind the scenes, randrep uses the cryptographic hash function SHA256, in a
+process that resembles the OFB mode of operation. The algorithm produces blocks
+of 256bits ad-hoc, by hashing the previous 256bit block using SHA256, where the
+initial block is derived from the key directly. Then using similar technics to
+the ones that 'random' uses, random floating point numbers and integers in
+range are derived when requested.
